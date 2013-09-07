@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MyWebServiceService" targetNamespace="http://testwebservice.pixel.cat.blue/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://testwebservice.pixel.cat.blue/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://testwebservice.pixel.cat.blue/" schemaLocation="mywebservice_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="whatIsTheAnswerResponse">
+    <wsdl:part name="parameters" element="tns:whatIsTheAnswerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="whatIsTheAnswer">
+    <wsdl:part name="parameters" element="tns:whatIsTheAnswer">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MyWebServiceSEI">
+    <wsdl:operation name="whatIsTheAnswer">
+      <wsdl:input name="whatIsTheAnswer" message="tns:whatIsTheAnswer">
+    </wsdl:input>
+      <wsdl:output name="whatIsTheAnswerResponse" message="tns:whatIsTheAnswerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MyWebServiceServiceSoapBinding" type="tns:MyWebServiceSEI">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="whatIsTheAnswer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="whatIsTheAnswer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="whatIsTheAnswerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MyWebServiceService">
+    <wsdl:port name="MyWebServicePort" binding="tns:MyWebServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/MyWebServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
